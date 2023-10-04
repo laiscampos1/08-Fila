@@ -13,8 +13,20 @@ NO* fim = NULL;
 // headers
 void menu();
 void inicializar();
-void insere();
-void remove();
+void insere(std::queue<int>& fila, int elemento) {
+    fila.push(elemento);
+}
+
+// Função para exibir e remover o primeiro elemento da fila
+void remove(std::queue<int>& fila) {
+    if (!fila.empty()) {
+        int primeiro_elemento = fila.front();
+        std::cout << "Elemento removido: " << primeiro_elemento << std::endl;
+        fila.pop();
+    } else {
+        std::cout << "Fila Vazia" << std::endl;
+    }
+}
 //--------------------------
 
 
@@ -59,7 +71,7 @@ void menu()
 void inicializar()
 {
 
-	// se a lista j� possuir elementos
+	// se a lista já possuir elementos
 	// libera a memoria ocupada
 	NO* aux = inicio;
 	while (aux != NULL) {
@@ -82,7 +94,9 @@ void insere()
 	if (novo == NULL)
 	{
 		return;
-	}
+	
+    fila.push(elemento);
+}
 
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
@@ -93,7 +107,27 @@ void insere()
 
 void remove()
 {
+	 if (!fila.empty()) {
+        int primeiro_elemento = fila.front();
+        std::cout << "Elemento removido: " << primeiro_elemento << std::endl;
+        fila.pop();
+    } else {
+        std::cout << "Fila Vazia" << std::endl;
+    }
+}
 
+ if (fila.empty()) {
+        std::cout << "Fila Vazia" << std::endl;
+    } else {
+        std::cout << "Elementos da fila: ";
+        std::queue<int> fila_temp = fila;
+        while (!fila_temp.empty()) {
+            std::cout << fila_temp.front() << " ";
+            fila_temp.pop();
+        }
+        std::cout << std::endl;
+    }
+}
 
 
 }
