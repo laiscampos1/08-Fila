@@ -1,31 +1,59 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.3.32804.467
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Fila", "Fila\Fila.vcxproj", "{1FEB3288-CD2F-41A1-9C47-779488CDC710}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1FEB3288-CD2F-41A1-9C47-779488CDC710}.Debug|x64.ActiveCfg = Debug|x64
-		{1FEB3288-CD2F-41A1-9C47-779488CDC710}.Debug|x64.Build.0 = Debug|x64
-		{1FEB3288-CD2F-41A1-9C47-779488CDC710}.Debug|x86.ActiveCfg = Debug|Win32
-		{1FEB3288-CD2F-41A1-9C47-779488CDC710}.Debug|x86.Build.0 = Debug|Win32
-		{1FEB3288-CD2F-41A1-9C47-779488CDC710}.Release|x64.ActiveCfg = Release|x64
-		{1FEB3288-CD2F-41A1-9C47-779488CDC710}.Release|x64.Build.0 = Release|x64
-		{1FEB3288-CD2F-41A1-9C47-779488CDC710}.Release|x86.ActiveCfg = Release|Win32
-		{1FEB3288-CD2F-41A1-9C47-779488CDC710}.Release|x86.Build.0 = Release|Win32
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5C64B612-0853-4CDD-9E01-AFE5585069CB}
-	EndGlobalSection
-EndGlobal
+#include <iostream>
+#include <queue>
+
+// Função para inserir um elemento no final da fila
+void insere(std::queue<int>& fila, int elemento) {
+    fila.push(elemento);
+}
+
+// Função para exibir e remover o primeiro elemento da fila
+void remove(std::queue<int>& fila) {
+    if (!fila.empty()) {
+        int primeiro_elemento = fila.front();
+        std::cout << "Elemento removido: " << primeiro_elemento << std::endl;
+        fila.pop();
+    } else {
+        std::cout << "Fila Vazia" << std::endl;
+    }
+}
+
+// Função para mostrar todos os elementos da fila
+void mostrarFila(const std::queue<int>& fila) {
+    if (fila.empty()) {
+        std::cout << "Fila Vazia" << std::endl;
+    } else {
+        std::cout << "Elementos da fila: ";
+        std::queue<int> fila_temp = fila;
+        while (!fila_temp.empty()) {
+            std::cout << fila_temp.front() << " ";
+            fila_temp.pop();
+        }
+        std::cout << std::endl;
+    }
+}
+
+// Função para mostrar o número de elementos na fila
+int tamanho(const std::queue<int>& fila) {
+    return fila.size();
+}
+
+int main() {
+    std::queue<int> fila;
+
+    // Inserir elementos na fila
+    insere(fila, 10);
+    insere(fila, 20);
+    insere(fila, 30);
+
+    // Mostrar elementos da fila
+    mostrarFila(fila);
+
+    // Remover elementos da fila
+    remove(fila);
+    mostrarFila(fila);
+
+    // Mostrar o tamanho da fila
+    std::cout << "Tamanho da fila: " << tamanho(fila) << std::endl;
+
+    return 0;
+}
